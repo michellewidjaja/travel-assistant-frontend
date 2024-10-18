@@ -17,13 +17,13 @@ const FlightList = ({ flightInfo }) => {
                       <div className="flex gap-4 justify-around">
                         {flight.itineraries.map((itinerary, itineraryKey) => (
                             itinerary.segments.map((segment, segmentKey) => ( 
-                              <>
+                              <div key={itineraryKey}>
                                 {segmentKey > 0 && <Divider orientation="vertical" flexItem style={{ height: '48px', borderColor: '#aaa7a7' }} />}
                                 <div key={segmentKey} className="mb-2">
                                   <Typography variant="body1">Aircraft {segment.aircraft.code}</Typography>
                                   <Typography variant="subtitle1" className="font-bold">{segment.departure.iataCode} - {segment.arrival.iataCode}</Typography>
                                 </div>
-                              </>
+                              </div>
                             ))
                         ))}
                       </div>

@@ -81,77 +81,78 @@ const Chatbot = () => {
       }
     }
 
-
     console.log(flightInfo);
             
     return (
-        <Paper style={{ padding: '40px', borderRadius: '20px', backgroundColor: '#262020' }}>
-            <div style={{ height: '300px', overflowY: 'scroll', border: '1px solid #545252', marginBottom: '10px', borderRadius: '20px', padding: '20px' }}>
-                {messages.map((msg, index) => (
-                    <div key={index} className={`my-4 ${msg.sender === 'user' ? 'user-message text-right' : 'bot-message text-left'}`}>
-                        <span className={`inline-block rounded-[20px] p-[6px] px-[12px] max-w-[50%] text-white ${msg.sender === 'user' ? 'bg-[#438dff] text-right' : 'bg-[#6a6a6a] text-left'}`}>
-                            {msg.text}
-                        </span>
-                    </div>
-                ))}
-                {isLoading && (
-                    <div className="my-4 text-left">
-                        <span className="bg-[#6a6a6a] text-white inline-block rounded-[20px] p-[6px] px-[12px]">Typing...</span>
-                    </div>
-                )}
-                <FlightList flightInfo={flightInfo} />
-                <div ref={endOfMessagesRef} />
-            </div>
-            <TextField
-              label="Type your message"
-              placeholder="Write a message and press Enter"
-              variant="outlined"
-              fullWidth
-              value={input}
-              onChange={(e) => setInput(e.target.value)}
-              onKeyPress={handleKeyPress} 
-              sx={{
-                margin: '10px 0',
-                '& input': {
-                    color: '#fff',
-                },
-                '& .MuiInputLabel-root': {
-                    color: '#fff',
-                    '&.Mui-focused': {
-                        color: '#438dff',
+        <div className="w-[100%]">
+            <Paper style={{ padding: '40px', borderRadius: '20px', backgroundColor: '#262020' }}>
+                <div style={{ height: '300px', overflowY: 'scroll', border: '1px solid #545252', marginBottom: '10px', borderRadius: '20px', padding: '20px' }}>
+                    {messages.map((msg, index) => (
+                        <div key={index} className={`my-4 ${msg.sender === 'user' ? 'user-message text-right' : 'bot-message text-left'}`}>
+                            <span className={`inline-block rounded-[20px] p-[6px] px-[12px] max-w-[50%] text-white ${msg.sender === 'user' ? 'bg-[#438dff] text-right' : 'bg-[#6a6a6a] text-left'}`}>
+                                {msg.text}
+                            </span>
+                        </div>
+                    ))}
+                    {isLoading && (
+                        <div className="my-4 text-left">
+                            <span className="bg-[#6a6a6a] text-white inline-block rounded-[20px] p-[6px] px-[12px]">Typing...</span>
+                        </div>
+                    )}
+                    <FlightList flightInfo={flightInfo} />
+                    <div ref={endOfMessagesRef} />
+                </div>
+                <TextField
+                label="Type your message"
+                placeholder="Write a message and press Enter"
+                variant="outlined"
+                fullWidth
+                value={input}
+                onChange={(e) => setInput(e.target.value)}
+                onKeyPress={handleKeyPress} 
+                sx={{
+                    margin: '10px 0',
+                    '& input': {
+                        color: '#fff',
                     },
-                    '&.MuiInputLabel-shrink': {
-                        color: '#438dff',
+                    '& .MuiInputLabel-root': {
+                        color: '#fff',
+                        '&.Mui-focused': {
+                            color: '#438dff',
+                        },
+                        '&.MuiInputLabel-shrink': {
+                            color: '#438dff',
+                        },
                     },
-                },
-                '& .MuiOutlinedInput-root': {
+                    '& .MuiOutlinedInput-root': {
+                        borderRadius: '50px',
+                        '& fieldset': {
+                            borderColor: '#438dff',
+                        },
+                        '&:hover fieldset': {
+                            borderColor: '#438dff',
+                        },
+                        '&.Mui-focused fieldset': {
+                            borderColor: '#438dff',
+                        },
+                    },
+                }}
+                />
+                <Button onClick={handleSend} variant="contained" color="primary" fullWidth style={{ marginTop: '15px' }}
+                sx={{
+                    backgroundColor: '#438dff',
+                    color: 'white',
                     borderRadius: '50px',
-                    '& fieldset': {
-                        borderColor: '#438dff',
+                    '&:hover': {
+                        backgroundColor: '#2b7de1',
                     },
-                    '&:hover fieldset': {
-                        borderColor: '#438dff',
-                    },
-                    '&.Mui-focused fieldset': {
-                        borderColor: '#438dff',
-                    },
-                },
-              }}
-            />
-            <Button onClick={handleSend} variant="contained" color="primary" fullWidth style={{ marginTop: '15px' }}
-               sx={{
-                backgroundColor: '#438dff',
-                color: 'white',
-                borderRadius: '50px',
-                '&:hover': {
-                    backgroundColor: '#2b7de1',
-                },
-                marginTop: '15px',
-                padding: '12px 20px'
-            }}>
-                Send
-            </Button>
-        </Paper>
+                    marginTop: '15px',
+                    padding: '12px 20px'
+                }}>
+                    Send
+                </Button>
+            </Paper>
+        </div>
     );
 };
 
